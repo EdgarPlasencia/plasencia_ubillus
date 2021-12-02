@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    
+</head>
+<body>
+    <form action="data.php" method="post">
+        <input type="date" name="fecha" placeholder="dd/mm/aaaa"><br>
+        <input type="number" name="kilometraje" placeholder="Kilometraje">
+        <br>
+        <label>Tipo de mantenimiento:</label><br>
+        <input type="radio" name="tipomantenimiento" id="preventivo" value="preventivo">
+        <label for="preventivo" onclick="mantenimientos()">Preventivo</label><br>
+        <div id="opcionesm"></div>
+        <input type="radio" name="tipomantenimiento" id="correctivo" value="correctivo">
+        <label for="correctivo" onclick="ocultarmantenimientos()">Correctivo</label><br>
+        <input type="number" name="repuestos" placeholder="Costo Rep"><br>
+        <input type="number" name="costomantenimiento" placeholder="Costo de mantenimiento"><br>
+        <input type="text" name="taller" placeholder="Nombre del taller"><br>
+        <label for="observaciones">Observaciones:</label><br>
+        <textarea name="observaciones" id="observaciones"></textarea>
+        <button type="submit" name="enviar">ENVIAR</button>
+    </form>
+
+
+    
+    <form action="crear.php" method="post">
+        <button type="submit">CREAR</button>
+    </form>
+
+
+    
+    <script type="text/javascript" src="metodos.js"></script>
+</body>
+</html>
