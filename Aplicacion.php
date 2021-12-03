@@ -3,16 +3,11 @@
 $conexion=mysqli_connect('localhost','prueba','c8u$7ShG','pu_mantenimiento')
 or die(mysql_error($mysqli));
 
-crear($conexion);
-
-function crear($conexion){
-
-    $consulta="CREATE TABLE pu_mantenimiento.registro ( fecha DATE NOT NULL , taller TEXT NOT NULL , kilometraje INT NOT NULL , costo INT NOT NULL , tipo TEXT NOT NULL , observaciones TEXT NOT NULL )";
-    mysqli_query($conexion,$consulta);
-    mysqli_close($conexion);
-}
+$query="select * from registro"; 
+$result=mysqli_query($conexion,$query); 
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +24,7 @@ function crear($conexion){
     <section class="tank-bootstrap-header">
         <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-2">
             <div class="container">
-                <a class="navbar-brand" href="index.html">Tabla</a>
+                <a class="navbar-brand" href="index.html">Mantenimientos</a>
                 <button class="navbar-toggler" type="button" 
                 data-toggle="collapse" data-target="#navbarSupportedContent">
                     <span class="navbar-toggler-icon fa fa-bars"></span>
@@ -43,7 +38,7 @@ function crear($conexion){
                             <a class="nav-link" href="Aplicacion.php">Aplicacion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Instalacion</a>
+                            <a class="nav-link" href="Instalacion.html">Instalacion</a>
                         </li>
                     </ul>
                 </div>
@@ -51,19 +46,66 @@ function crear($conexion){
         </nav>
     </section>
 
-    
+
     <section class="tank-main-banner">
 
         <div class="slider-info banner-view text-center">
-            <div class="banner-info container">
-                <h3 class="banner-text mt-5">TABLA CREADA CORRECTAMENTE</h3>
+            <div class="-info container">
+                <h3 class="banner-text mt-5">Tabla de Manteniminetos</h3>
             </div>
-            
+
+            <table style="color:white">
+            <tr> 
+		<th colspan="6"><h2>HISTORIAL</h2></th> 
+		</tr> 
+			  <th> FECHA </th> 
+			  <th> TALLER </th> 
+			  <th> KILOMETRAJE </th> 
+			  <th> COSTO </th>
+              <th> TIPO </th>
+              <th> OBSERVACIONES </th> 
+			  
+		</tr> 
+		
+		<?php while($rows=mysqli_fetch_assoc($result)) 
+		{ 
+		?> 
+		<tr> <td><?php echo $rows['fecha']; ?></td> 
+		<td><?php echo $rows['taller']; ?></td> 
+		<td><?php echo $rows['kilometraje']; ?></td> 
+		<td><?php echo $rows['costo']; ?></td>
+        <td><?php echo $rows['tipo']; ?></td> 
+        <td><?php echo $rows['observaciones']; ?></td>  
+		</tr> 
+	<?php 
+               } 
+          ?> 
+
+            </table>    
+
 
         </div>
 
     </section>
 
+    <section class="tank-contacts-12" id="contact">
+        <div class="contact-top pt-5">
+            <div class="container py-md-3">
+                
+
+                <div class="row cont-main-top">
+                    <div class="contacts12-main col-lg-6">
+                        <div class= "selection">
+                        
+                            <button type="submit" name="refrescar" onClick="location.href=location.href">Refrescar</button>
+
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="tank-footer-29-main" id="footer">
         <div class="footer-29 text-center">
@@ -102,8 +144,6 @@ function crear($conexion){
                 }
             </script>
     </section>
-
-    
 
 
     <script>
